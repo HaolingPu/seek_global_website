@@ -1,14 +1,15 @@
 import { motion } from 'framer-motion'
 import { Award, Leaf, Target, ArrowRight } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { company, aboutHighlights, valueChain } from '../data/content'
 import { useLang } from '../i18n/LangContext'
 
 const icons = [Target, Leaf, Award]
 
-export default function About() {
+export default function About({ hideHeader = false }) {
   const { t, pick } = useLang()
   return (
-    <section id="about" className="relative bg-brand-50/40 py-20 lg:py-28">
+    <section id="about" className="relative bg-brand-50/40 py-20 lg:py-24">
       <div className="container-x">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:items-start">
           <motion.div
@@ -18,9 +19,11 @@ export default function About() {
             transition={{ duration: 0.6 }}
             className="lg:col-span-5"
           >
-            <span className="eyebrow">{t('about_eyebrow')}</span>
-            <h2 className="section-title mt-3">{t('about_title')}</h2>
-            <p className="section-sub">{pick(company.description)}</p>
+            {!hideHeader && <span className="eyebrow">{t('about_eyebrow')}</span>}
+            {!hideHeader && <h2 className="section-title mt-3">{t('about_title')}</h2>}
+            <p className={hideHeader ? 'text-base md:text-lg text-ink-500 leading-relaxed' : 'section-sub'}>
+              {pick(company.description)}
+            </p>
 
             <div className="mt-8 grid grid-cols-2 gap-4">
               <div className="rounded-2xl border border-ink-300/40 bg-white p-5">
@@ -33,10 +36,10 @@ export default function About() {
               </div>
             </div>
 
-            <a href="#contact" className="btn-primary mt-8">
+            <Link to="/contact" className="btn-primary mt-8">
               {t('about_partner')}
               <ArrowRight className="h-4 w-4" />
-            </a>
+            </Link>
           </motion.div>
 
           <motion.div

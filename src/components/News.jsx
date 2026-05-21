@@ -9,7 +9,7 @@ const fallbackImages = [
   '/images/solutions/pyrolysis-equipment.jpg',
 ]
 
-export default function News() {
+export default function News({ hideHeader = false }) {
   const { t, pick, showToast } = useLang()
 
   const handleReadMore = (e) => {
@@ -18,27 +18,29 @@ export default function News() {
   }
 
   return (
-    <section id="news" className="bg-brand-50/30 py-20 lg:py-28">
+    <section id="news" className="bg-brand-50/30 py-20 lg:py-24">
       <div className="container-x">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.6 }}
-          className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end"
-        >
-          <div>
-            <span className="eyebrow">{t('news_eyebrow')}</span>
-            <h2 className="section-title mt-3">{t('news_title')}</h2>
-            <p className="section-sub">{t('news_sub')}</p>
-          </div>
-          <a href="#news" onClick={handleReadMore} className="link-arrow">
-            {t('news_all')}
-            <ArrowUpRight className="h-4 w-4" />
-          </a>
-        </motion.div>
+        {!hideHeader && (
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.6 }}
+            className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end"
+          >
+            <div>
+              <span className="eyebrow">{t('news_eyebrow')}</span>
+              <h2 className="section-title mt-3">{t('news_title')}</h2>
+              <p className="section-sub">{t('news_sub')}</p>
+            </div>
+            <a href="#news" onClick={handleReadMore} className="link-arrow">
+              {t('news_all')}
+              <ArrowUpRight className="h-4 w-4" />
+            </a>
+          </motion.div>
+        )}
 
-        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div className={`grid grid-cols-1 gap-6 md:grid-cols-3 ${hideHeader ? '' : 'mt-10'}`}>
           {news.map((n, i) => (
             <motion.article
               key={n.title.en}

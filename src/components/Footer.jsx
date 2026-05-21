@@ -1,4 +1,5 @@
 import { Mail, MapPin, Phone, Factory } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { company, contact, nav } from '../data/content'
 import { useLang } from '../i18n/LangContext'
 
@@ -15,7 +16,7 @@ export default function Footer() {
       <div className="container-x py-16">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-12">
           <div className="md:col-span-4">
-            <div className="flex items-center gap-3">
+            <Link to="/" className="flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 text-white font-bold shadow-sm">
                 S
               </div>
@@ -23,7 +24,7 @@ export default function Footer() {
                 <div className="text-base font-bold text-white">SEEK Biotechnology</div>
                 <div className="text-[11px] tracking-wide text-white/60">时科生物科技</div>
               </div>
-            </div>
+            </Link>
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/65">{t('footer_desc')}</p>
             <p className="mt-5 text-xs text-white/60">{t('footer_email_invite')}</p>
             <a
@@ -40,9 +41,9 @@ export default function Footer() {
             <ul className="mt-4 space-y-2.5">
               {nav.map((n) => (
                 <li key={n.key}>
-                  <a href={n.href} className="text-sm text-white/70 transition hover:text-white">
+                  <Link to={n.to} className="text-sm text-white/70 transition hover:text-white">
                     {n[lang] || n.en}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -51,12 +52,12 @@ export default function Footer() {
           <div className="md:col-span-2">
             <h4 className="text-sm font-semibold text-white">{t('footer_solutions')}</h4>
             <ul className="mt-4 space-y-2.5 text-sm text-white/70">
-              <li><a href="#solutions" className="hover:text-white transition">Circular Economy EPC</a></li>
-              <li><a href="#solutions" className="hover:text-white transition">Pyrolysis Equipment</a></li>
-              <li><a href="#solutions" className="hover:text-white transition">Fertilizer Equipment</a></li>
-              <li><a href="#solutions" className="hover:text-white transition">Carbon Trading</a></li>
-              <li><a href="#solutions" className="hover:text-white transition">Plant Nutrition</a></li>
-              <li><a href="#solutions" className="hover:text-white transition">Soil Remediation</a></li>
+              <li><Link to="/solutions#epc" className="hover:text-white transition">Circular Economy EPC</Link></li>
+              <li><Link to="/solutions#pyrolysis" className="hover:text-white transition">Pyrolysis Equipment</Link></li>
+              <li><Link to="/solutions#fertilizer" className="hover:text-white transition">Fertilizer Equipment</Link></li>
+              <li><Link to="/solutions#carbon" className="hover:text-white transition">Carbon Trading</Link></li>
+              <li><Link to="/solutions#nutrition" className="hover:text-white transition">Plant Nutrition</Link></li>
+              <li><Link to="/solutions#soil" className="hover:text-white transition">Soil Remediation</Link></li>
             </ul>
           </div>
 

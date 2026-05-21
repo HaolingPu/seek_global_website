@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { ArrowRight, Leaf, Recycle, Sparkles } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { useLang } from '../i18n/LangContext'
 
 export default function Hero() {
@@ -30,13 +31,13 @@ export default function Hero() {
             </p>
 
             <div className="mt-6 flex flex-wrap items-center gap-3">
-              <a href="#solutions" className="btn-primary">
+              <Link to="/solutions" className="btn-primary">
                 {t('hero_cta_primary')}
                 <ArrowRight className="h-4 w-4" />
-              </a>
-              <a href="#contact" className="btn-ghost">
+              </Link>
+              <Link to="/contact" className="btn-ghost">
                 {t('hero_cta_secondary')}
-              </a>
+              </Link>
             </div>
 
             <div className="mt-7 flex flex-wrap gap-x-6 gap-y-3 text-sm text-ink-500">

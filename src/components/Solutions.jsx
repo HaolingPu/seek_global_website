@@ -1,40 +1,44 @@
 import { motion } from 'framer-motion'
 import { ArrowUpRight, Check } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { solutions } from '../data/content'
 import { useLang } from '../i18n/LangContext'
 
-export default function Solutions() {
+export default function Solutions({ hideHeader = false }) {
   const { t, pick } = useLang()
   return (
-    <section id="solutions" className="relative py-20 lg:py-28">
+    <section id="solutions" className="relative py-20 lg:py-24">
       <div className="container-x">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.6 }}
-          className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end"
-        >
-          <div>
-            <span className="eyebrow">{t('sol_eyebrow')}</span>
-            <h2 className="section-title mt-3">{t('sol_title')}</h2>
-            <p className="section-sub">{t('sol_sub')}</p>
-          </div>
-          <a href="#contact" className="link-arrow">
-            {t('sol_cta_proposal')}
-            <ArrowUpRight className="h-4 w-4" />
-          </a>
-        </motion.div>
+        {!hideHeader && (
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.6 }}
+            className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end"
+          >
+            <div>
+              <span className="eyebrow">{t('sol_eyebrow')}</span>
+              <h2 className="section-title mt-3">{t('sol_title')}</h2>
+              <p className="section-sub">{t('sol_sub')}</p>
+            </div>
+            <Link to="/contact" className="link-arrow">
+              {t('sol_cta_proposal')}
+              <ArrowUpRight className="h-4 w-4" />
+            </Link>
+          </motion.div>
+        )}
 
-        <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className={`grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 ${hideHeader ? '' : 'mt-12'}`}>
           {solutions.map((s, i) => (
             <motion.article
               key={s.id}
+              id={s.id}
               initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.5, delay: (i % 3) * 0.08 }}
-              className="card group border border-ink-300/30 overflow-hidden flex flex-col"
+              className="card group border border-ink-300/30 overflow-hidden flex flex-col scroll-mt-28"
             >
               <div className="aspect-[16/10] w-full relative overflow-hidden bg-brand-50">
                 <img
@@ -61,10 +65,10 @@ export default function Solutions() {
                     </li>
                   ))}
                 </ul>
-                <a href="#contact" className="link-arrow mt-6">
+                <Link to="/contact" className="link-arrow mt-6">
                   {t('sol_cta_view_more')}
                   <ArrowUpRight className="h-4 w-4" />
-                </a>
+                </Link>
               </div>
             </motion.article>
           ))}

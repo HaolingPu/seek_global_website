@@ -4,7 +4,7 @@ import { Mail, Phone, MapPin, Send, CheckCircle2, Factory } from 'lucide-react'
 import { contact } from '../data/content'
 import { useLang } from '../i18n/LangContext'
 
-export default function Contact() {
+export default function Contact({ hideHeader = false }) {
   const { t, pick } = useLang()
   const [submitted, setSubmitted] = useState(false)
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
@@ -29,7 +29,7 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="relative overflow-hidden py-20 lg:py-28">
+    <section id="contact" className="relative overflow-hidden py-20 lg:py-24">
       <div className="absolute inset-0 bg-gradient-to-br from-white via-brand-50/40 to-white" />
       <div className="absolute -left-20 -top-32 h-96 w-96 rounded-full bg-brand-200/40 blur-3xl" />
       <div className="container-x relative">
@@ -41,11 +41,11 @@ export default function Contact() {
             transition={{ duration: 0.6 }}
             className="lg:col-span-5"
           >
-            <span className="eyebrow">{t('contact_eyebrow')}</span>
-            <h2 className="section-title mt-3">{t('contact_title')}</h2>
-            <p className="section-sub">{t('contact_sub')}</p>
+            {!hideHeader && <span className="eyebrow">{t('contact_eyebrow')}</span>}
+            {!hideHeader && <h2 className="section-title mt-3">{t('contact_title')}</h2>}
+            {!hideHeader && <p className="section-sub">{t('contact_sub')}</p>}
 
-            <div className="mt-8 space-y-4">
+            <div className={`space-y-4 ${hideHeader ? '' : 'mt-8'}`}>
               <ContactRow
                 icon={Phone}
                 label={t('contact_label_hotline')}

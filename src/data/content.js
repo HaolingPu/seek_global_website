@@ -38,44 +38,44 @@ export const contact = {
 }
 
 export const nav = [
-  { key: 'home', en: 'Home', zh: '首页', href: '#home' },
+  { key: 'home', en: 'Home', zh: '首页', to: '/' },
   {
     key: 'solutions',
     en: 'Solutions',
     zh: '解决方案',
-    href: '#solutions',
+    to: '/solutions',
     children: [
-      { en: 'Circular Economy EPC', zh: '循环经济EPC服务', href: '#solutions' },
-      { en: 'Pyrolysis Equipment', zh: '热解炭化装备', href: '#solutions' },
-      { en: 'Fertilizer Equipment', zh: '三双制肥装备', href: '#solutions' },
-      { en: 'Carbon Trading', zh: '碳交易服务', href: '#solutions' },
-      { en: 'Plant Nutrition', zh: '植物营养方案', href: '#solutions' },
-      { en: 'Soil Improvement', zh: '土壤改良与修复', href: '#solutions' },
+      { en: 'Circular Economy EPC', zh: '循环经济EPC服务', to: '/solutions#epc' },
+      { en: 'Pyrolysis Equipment', zh: '热解炭化装备', to: '/solutions#pyrolysis' },
+      { en: 'Fertilizer Equipment', zh: '三双制肥装备', to: '/solutions#fertilizer' },
+      { en: 'Carbon Trading', zh: '碳交易服务', to: '/solutions#carbon' },
+      { en: 'Plant Nutrition', zh: '植物营养方案', to: '/solutions#nutrition' },
+      { en: 'Soil Improvement', zh: '土壤改良与修复', to: '/solutions#soil' },
     ],
   },
   {
     key: 'technology',
     en: 'Technology',
     zh: '科技创新',
-    href: '#technology',
+    to: '/technology',
     children: [
-      { en: 'Core Systems', zh: '十大核心系统', href: '#technology' },
-      { en: 'Honors & Qualifications', zh: '资质与荣誉', href: '#certifications' },
+      { en: 'Core Systems', zh: '十大核心系统', to: '/technology' },
+      { en: 'Honors & Qualifications', zh: '资质与荣誉', to: '/technology#certifications' },
     ],
   },
   {
     key: 'about',
     en: 'About',
     zh: '关于我们',
-    href: '#about',
+    to: '/about',
     children: [
-      { en: 'Group Overview', zh: '集团概况', href: '#about' },
-      { en: 'Leadership', zh: '管理团队', href: '#leadership' },
+      { en: 'Group Overview', zh: '集团概况', to: '/about' },
+      { en: 'Leadership', zh: '管理团队', to: '/about#leadership' },
     ],
   },
-  { key: 'cases', en: 'Cases', zh: '项目案例', href: '#cases' },
-  { key: 'news', en: 'News', zh: '新闻中心', href: '#news' },
-  { key: 'contact', en: 'Contact', zh: '联系我们', href: '#contact' },
+  { key: 'cases', en: 'Cases', zh: '项目案例', to: '/cases' },
+  { key: 'news', en: 'News', zh: '新闻中心', to: '/news' },
+  { key: 'contact', en: 'Contact', zh: '联系我们', to: '/contact' },
 ]
 
 // Active language codes. Others show "translation coming soon" toast.

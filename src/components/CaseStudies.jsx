@@ -4,49 +4,51 @@ import { MapPin, Gauge, ChevronLeft, ChevronRight } from 'lucide-react'
 import { cases } from '../data/content'
 import { useLang } from '../i18n/LangContext'
 
-export default function CaseStudies() {
+export default function CaseStudies({ hideHeader = false }) {
   const { t, pick } = useLang()
   const [active, setActive] = useState(0)
   const total = cases.length
   const current = cases[active]
 
   return (
-    <section id="cases" className="py-20 lg:py-28">
+    <section id="cases" className="py-20 lg:py-24">
       <div className="container-x">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.6 }}
-          className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end"
-        >
-          <div>
-            <span className="eyebrow">{t('cases_eyebrow')}</span>
-            <h2 className="section-title mt-3">{t('cases_title')}</h2>
-            <p className="section-sub">{t('cases_sub')}</p>
-          </div>
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => setActive((i) => (i - 1 + total) % total)}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-ink-300/60 text-ink-700 hover:border-brand-500 hover:text-brand-700"
-              aria-label={t('cases_prev')}
-            >
-              <ChevronLeft className="h-4 w-4" />
-            </button>
-            <span className="text-sm text-ink-500 tabular-nums">
-              {String(active + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
-            </span>
-            <button
-              onClick={() => setActive((i) => (i + 1) % total)}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-ink-300/60 text-ink-700 hover:border-brand-500 hover:text-brand-700"
-              aria-label={t('cases_next')}
-            >
-              <ChevronRight className="h-4 w-4" />
-            </button>
-          </div>
-        </motion.div>
+        {!hideHeader && (
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.6 }}
+            className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end"
+          >
+            <div>
+              <span className="eyebrow">{t('cases_eyebrow')}</span>
+              <h2 className="section-title mt-3">{t('cases_title')}</h2>
+              <p className="section-sub">{t('cases_sub')}</p>
+            </div>
+            <CarouselControls
+              active={active}
+              total={total}
+              setActive={setActive}
+              prevLabel={t('cases_prev')}
+              nextLabel={t('cases_next')}
+            />
+          </motion.div>
+        )}
 
-        <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-12 lg:items-stretch">
+        {hideHeader && (
+          <div className="flex justify-end">
+            <CarouselControls
+              active={active}
+              total={total}
+              setActive={setActive}
+              prevLabel={t('cases_prev')}
+              nextLabel={t('cases_next')}
+            />
+          </div>
+        )}
+
+        <div className={`grid grid-cols-1 gap-6 lg:grid-cols-12 lg:items-stretch ${hideHeader ? 'mt-6' : 'mt-10'}`}>
           <div className="relative min-h-[420px] overflow-hidden rounded-3xl border border-ink-300/30 shadow-card lg:col-span-7">
             <AnimatePresence mode="wait">
               <motion.div
@@ -110,5 +112,29 @@ export default function CaseStudies() {
         </div>
       </div>
     </section>
+  )
+}
+
+function CarouselControls({ active, total, setActive, prevLabel, nextLabel }) {
+  return (
+    <div className="flex items-center gap-3">
+      <button
+        onClick={() => setActive((i) => (i - 1 + total) % total)}
+        className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-ink-300/60 text-ink-700 hover:border-brand-500 hover:text-brand-700"
+        aria-label={prevLabel}
+      >
+        <ChevronLeft className="h-4 w-4" />
+      </button>
+      <span className="text-sm text-ink-500 tabular-nums">
+        {String(active + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
+      </span>
+      <button
+        onClick={() => setActive((i) => (i + 1) % total)}
+        className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-ink-300/60 text-ink-700 hover:border-brand-500 hover:text-brand-700"
+        aria-label={nextLabel}
+      >
+        <ChevronRight className="h-4 w-4" />
+      </button>
+    </div>
   )
 }

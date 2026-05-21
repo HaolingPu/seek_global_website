@@ -144,6 +144,26 @@ const ui = {
     toast_translation_soon: 'Translation in progress — falling back to English.',
     toast_search_soon: 'Search is coming soon. Use the navigation menu for now.',
     toast_page_soon: 'This page is coming soon.',
+    // Page heroes
+    page_home_kicker: 'SEEK Biotechnology',
+    page_solutions_title: 'Solutions',
+    page_solutions_sub:
+      'Engineering, equipment and operating know-how for converting organic waste into value.',
+    page_technology_title: 'Technology Innovation',
+    page_technology_sub:
+      'Patented process know-how, intelligent equipment and recognized industry standards.',
+    page_about_title: 'About SEEK',
+    page_about_sub:
+      'A national-level high-tech enterprise positioned as a circular-economy service provider.',
+    page_cases_title: 'Project Cases',
+    page_cases_sub:
+      'From domestic demonstration bases to flagship overseas deployments.',
+    page_news_title: 'News Center',
+    page_news_sub: 'Group news, project milestones and industry perspectives.',
+    page_contact_title: 'Contact Us',
+    page_contact_sub:
+      'Tell us about your project — we will respond within one business day.',
+    crumb_home: 'Home',
   },
   zh: {
     topbar_hotline: '服务热线',
@@ -257,6 +277,20 @@ const ui = {
     toast_translation_soon: '该语种翻译版本筹备中，已切换为英文显示。',
     toast_search_soon: '站内搜索功能即将上线，目前请使用顶部导航。',
     toast_page_soon: '该页面即将上线。',
+    page_home_kicker: '时科生物科技',
+    page_solutions_title: '解决方案',
+    page_solutions_sub: '将有机废弃物转化为高价值资源的工程、装备与运营能力。',
+    page_technology_title: '科技创新',
+    page_technology_sub: '自主工艺技术、智能装备与权威行业标准。',
+    page_about_title: '关于时科',
+    page_about_sub: '以"循环经济服务商"为战略定位的国家高新技术企业。',
+    page_cases_title: '项目案例',
+    page_cases_sub: '从国内示范基地到海外旗舰项目。',
+    page_news_title: '新闻中心',
+    page_news_sub: '集团新闻、项目进展与行业洞察。',
+    page_contact_title: '联系我们',
+    page_contact_sub: '告诉我们您的项目，我们将在 1 个工作日内回复您。',
+    crumb_home: '首页',
   },
 }
 

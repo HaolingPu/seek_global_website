@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import { Atom, ShieldCheck, Cpu, Beaker } from 'lucide-react'
 import { useLang } from '../i18n/LangContext'
 
-export default function Technology() {
+export default function Technology({ hideHeader = false }) {
   const { t } = useLang()
 
   const pillars = [
@@ -26,22 +26,24 @@ export default function Technology() {
   ]
 
   return (
-    <section id="technology" className="relative py-20 lg:py-28 overflow-hidden">
+    <section id="technology" className="relative py-20 lg:py-24 overflow-hidden">
       <div className="absolute inset-0 grid-bg opacity-50" />
       <div className="container-x relative">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.6 }}
-          className="max-w-3xl"
-        >
-          <span className="eyebrow">{t('tech_eyebrow')}</span>
-          <h2 className="section-title mt-3">{t('tech_title')}</h2>
-          <p className="section-sub">{t('tech_sub')}</p>
-        </motion.div>
+        {!hideHeader && (
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.6 }}
+            className="max-w-3xl"
+          >
+            <span className="eyebrow">{t('tech_eyebrow')}</span>
+            <h2 className="section-title mt-3">{t('tech_title')}</h2>
+            <p className="section-sub">{t('tech_sub')}</p>
+          </motion.div>
+        )}
 
-        <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className={`grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 ${hideHeader ? '' : 'mt-12'}`}>
           {pillars.map((p, i) => (
             <motion.div
               key={p.title}

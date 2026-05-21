@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown, Globe, Menu, Search, X, Phone } from 'lucide-react'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 import { nav, languages, contact } from '../data/content'
 import { useLang } from '../i18n/LangContext'
 
@@ -9,6 +10,7 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [langOpen, setLangOpen] = useState(false)
+  const location = useLocation()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12)
@@ -16,6 +18,12 @@ export default function Header() {
     window.addEventListener('scroll', onScroll)
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileOpen(false)
+    setLangOpen(false)
+  }, [location.pathname])
 
   const activeMap = Object.fromEntries(languages.map((l) => [l.code, l.active]))
   const currentLabel = languages.find((l) => l.code === lang)?.label || 'English'
@@ -26,19 +34,24 @@ export default function Header() {
       <div className="hidden md:block bg-ink-900 text-white/80 text-xs">
         <div className="container-x flex h-9 items-center justify-between">
           <div className="flex items-center gap-5">
-            <a href={`tel:${contact.hotline.replace(/[^0-9]/g, '')}`} className="inline-flex items-center gap-1.5 hover:text-white">
+            <a
+              href={`tel:${contact.hotline.replace(/[^0-9]/g, '')}`}
+              className="inline-flex items-center gap-1.5 hover:text-white"
+            >
               <Phone className="h-3.5 w-3.5" />
               {t('topbar_hotline')}: {contact.hotline}
             </a>
             <span className="opacity-60">·</span>
-            <a href={`mailto:${contact.email}`} className="hover:text-white">{contact.email}</a>
+            <a href={`mailto:${contact.email}`} className="hover:text-white">
+              {contact.email}
+            </a>
           </div>
           <div className="flex items-center gap-4 opacity-90">
-            <a href="#contact" className="hover:text-white">{t('topbar_cooperation')}</a>
+            <Link to="/contact" className="hover:text-white">{t('topbar_cooperation')}</Link>
             <span className="opacity-30">|</span>
-            <a href="#contact" className="hover:text-white">{t('topbar_qa')}</a>
+            <Link to="/contact" className="hover:text-white">{t('topbar_qa')}</Link>
             <span className="opacity-30">|</span>
-            <a href="#contact" className="hover:text-white">{t('topbar_contact')}</a>
+            <Link to="/contact" className="hover:text-white">{t('topbar_contact')}</Link>
           </div>
         </div>
       </div>
@@ -50,7 +63,7 @@ export default function Header() {
       >
         <div className="container-x flex h-20 items-center justify-between gap-6">
           {/* Logo */}
-          <a href="#home" className="flex items-center gap-3 shrink-0">
+          <Link to="/" className="flex items-center gap-3 shrink-0">
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 text-white font-bold shadow-sm">
               S
             </div>
@@ -60,32 +73,37 @@ export default function Header() {
               </div>
               <div className="text-[11px] text-ink-500 tracking-wide">时科生物科技</div>
             </div>
-          </a>
+          </Link>
 
           {/* Desktop nav */}
           <nav className="hidden lg:flex items-center gap-1">
             {nav.map((item) => (
               <div key={item.key} className="group relative">
-                <a
-                  href={item.href}
-                  className="inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium text-ink-700 transition hover:text-brand-700"
+                <NavLink
+                  to={item.to}
+                  end={item.to === '/'}
+                  className={({ isActive }) =>
+                    `inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition ${
+                      isActive ? 'text-brand-700' : 'text-ink-700 hover:text-brand-700'
+                    }`
+                  }
                 >
                   {item[lang] || item.en}
                   {item.children && (
                     <ChevronDown className="h-3.5 w-3.5 opacity-60 transition group-hover:rotate-180" />
                   )}
-                </a>
+                </NavLink>
                 {item.children && (
                   <div className="invisible absolute left-1/2 top-full -translate-x-1/2 pt-2 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100">
                     <div className="min-w-[240px] rounded-xl border border-ink-300/40 bg-white p-2 shadow-card">
                       {item.children.map((c) => (
-                        <a
+                        <Link
                           key={c.en}
-                          href={c.href}
+                          to={c.to}
                           className="block rounded-md px-3 py-2 text-sm text-ink-700 transition hover:bg-brand-50 hover:text-brand-700"
                         >
                           {c[lang] || c.en}
-                        </a>
+                        </Link>
                       ))}
                     </div>
                   </div>
@@ -150,9 +168,9 @@ export default function Header() {
               </AnimatePresence>
             </div>
 
-            <a href="#contact" className="hidden md:inline-flex btn-primary py-2 px-5 text-xs">
+            <Link to="/contact" className="hidden md:inline-flex btn-primary py-2 px-5 text-xs">
               {t('header_get_price')}
-            </a>
+            </Link>
 
             <button
               onClick={() => setMobileOpen(true)}
@@ -195,23 +213,30 @@ export default function Header() {
               </div>
               <div className="mt-6 space-y-1">
                 {nav.map((item) => (
-                  <a
+                  <NavLink
                     key={item.key}
-                    href={item.href}
+                    to={item.to}
+                    end={item.to === '/'}
                     onClick={() => setMobileOpen(false)}
-                    className="block rounded-md px-3 py-2.5 text-sm font-medium text-ink-700 hover:bg-brand-50 hover:text-brand-700"
+                    className={({ isActive }) =>
+                      `block rounded-md px-3 py-2.5 text-sm font-medium transition ${
+                        isActive
+                          ? 'bg-brand-50 text-brand-700'
+                          : 'text-ink-700 hover:bg-brand-50 hover:text-brand-700'
+                      }`
+                    }
                   >
                     {item[lang] || item.en}
-                  </a>
+                  </NavLink>
                 ))}
               </div>
-              <a
-                href="#contact"
+              <Link
+                to="/contact"
                 onClick={() => setMobileOpen(false)}
                 className="btn-primary mt-6 w-full justify-center"
               >
                 {t('header_get_price')}
-              </a>
+              </Link>
             </motion.aside>
           </motion.div>
         )}
