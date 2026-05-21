@@ -7,7 +7,6 @@ export default function PageHero({ title, subtitle, eyebrow }) {
   const { t } = useLang()
   return (
     <section className="relative overflow-hidden border-b border-ink-300/30 bg-gradient-to-br from-brand-50/60 via-white to-white">
-      <div className="absolute inset-0 grid-bg opacity-40" />
       <div className="absolute -right-32 -top-32 h-80 w-80 rounded-full bg-brand-200/40 blur-3xl" />
       <div className="absolute -left-32 -bottom-32 h-80 w-80 rounded-full bg-accent-500/10 blur-3xl" />
 

@@ -59,7 +59,7 @@ export const nav = [
     zh: '科技创新',
     to: '/technology',
     children: [
-      { en: 'Core Systems', zh: '十大核心系统', to: '/technology' },
+      { en: 'Self-developed Smart Equipment', zh: '自研智能设备', to: '/technology' },
       { en: 'Honors & Qualifications', zh: '资质与荣誉', to: '/technology#certifications' },
     ],
   },
