@@ -27,7 +27,6 @@ export default function Technology({ hideHeader = false }) {
 
   return (
     <section id="technology" className="relative py-20 lg:py-24 overflow-hidden">
-      <div className="absolute inset-0 grid-bg opacity-50" />
       <div className="container-x relative">
         {!hideHeader && (
           <motion.div

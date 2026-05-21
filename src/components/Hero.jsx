@@ -7,7 +7,6 @@ export default function Hero() {
   const { t } = useLang()
   return (
     <section id="home" className="relative overflow-hidden bg-white">
-      <div className="absolute inset-0 grid-bg opacity-50" />
       <div className="absolute -top-32 -right-32 h-96 w-96 rounded-full bg-brand-200/40 blur-3xl" />
       <div className="absolute -bottom-32 -left-32 h-96 w-96 rounded-full bg-accent-500/10 blur-3xl" />
 
