@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { MapPin, Gauge, ChevronLeft, ChevronRight } from 'lucide-react'
 import { cases } from '../data/content'
 import { useLang } from '../i18n/LangContext'
+import { assetUrl } from '../utils/assetUrl'
 
 export default function CaseStudies({ hideHeader = false }) {
   const { t, pick } = useLang()
@@ -60,7 +61,7 @@ export default function CaseStudies({ hideHeader = false }) {
                 className="absolute inset-0"
               >
                 <img
-                  src={current.image}
+                  src={assetUrl(current.image)}
                   alt={pick(current.title)}
                   loading="lazy"
                   className="absolute inset-0 h-full w-full object-cover"

@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { leadership } from '../data/content'
 import { useLang } from '../i18n/LangContext'
+import { assetUrl } from '../utils/assetUrl'
 
 export default function Leadership() {
   const { t, pick } = useLang()
@@ -31,7 +32,7 @@ export default function Leadership() {
             >
               <div className="h-32 w-28 shrink-0 overflow-hidden rounded-2xl bg-brand-50 md:h-40 md:w-36">
                 <img
-                  src={person.photo}
+                  src={assetUrl(person.photo)}
                   alt={pick(person.name)}
                   loading="lazy"
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"

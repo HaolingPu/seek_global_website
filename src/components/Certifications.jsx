@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { Award, FileBadge } from 'lucide-react'
 import { certifications, patents } from '../data/content'
 import { useLang } from '../i18n/LangContext'
+import { assetUrl } from '../utils/assetUrl'
 
 export default function Certifications() {
   const { t } = useLang()
@@ -42,7 +43,7 @@ export default function Certifications() {
                 className="group aspect-[4/5] overflow-hidden rounded-xl border border-ink-300/40 bg-white shadow-sm transition-shadow hover:shadow-card-hover"
               >
                 <img
-                  src={c.src}
+                  src={assetUrl(c.src)}
                   alt={c.alt}
                   loading="lazy"
                   className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105"
@@ -68,7 +69,7 @@ export default function Certifications() {
                   className="group aspect-[4/5] overflow-hidden rounded-xl border border-ink-300/40 bg-white shadow-sm transition-shadow hover:shadow-card-hover"
                 >
                   <img
-                    src={p.src}
+                    src={assetUrl(p.src)}
                     alt={p.alt}
                     loading="lazy"
                     className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105"

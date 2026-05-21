@@ -3,6 +3,7 @@ import { ArrowUpRight, Check } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { solutions } from '../data/content'
 import { useLang } from '../i18n/LangContext'
+import { assetUrl } from '../utils/assetUrl'
 
 export default function Solutions({ hideHeader = false }) {
   const { t, pick } = useLang()
@@ -42,7 +43,7 @@ export default function Solutions({ hideHeader = false }) {
             >
               <div className="aspect-[16/10] w-full relative overflow-hidden bg-brand-50">
                 <img
-                  src={s.image}
+                  src={assetUrl(s.image)}
                   alt={pick(s.title)}
                   loading="lazy"
                   className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"

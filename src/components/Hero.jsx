@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { ArrowRight, Leaf, Recycle, Sparkles } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { useLang } from '../i18n/LangContext'
+import { assetUrl } from '../utils/assetUrl'
 
 export default function Hero() {
   const { t } = useLang()
@@ -64,7 +65,7 @@ export default function Hero() {
             <div className="relative">
               <div className="aspect-[4/5] w-full rounded-3xl border border-ink-300/30 shadow-card overflow-hidden">
                 <img
-                  src="/images/hero-jinshan-factory.jpg"
+                  src={assetUrl('/images/hero-jinshan-factory.jpg')}
                   alt="SEEK Jinshan factory panorama"
                   className="h-full w-full object-cover"
                   loading="eager"

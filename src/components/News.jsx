@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import { news } from '../data/content'
 import { useLang } from '../i18n/LangContext'
+import { assetUrl } from '../utils/assetUrl'
 
 const fallbackImages = [
   '/images/cases/jinshan-pano-2.jpg',
@@ -52,7 +53,7 @@ export default function News({ hideHeader = false }) {
             >
               <div className="relative aspect-[16/10] overflow-hidden bg-brand-50">
                 <img
-                  src={fallbackImages[i % fallbackImages.length]}
+                  src={assetUrl(fallbackImages[i % fallbackImages.length])}
                   alt={pick(n.title)}
                   loading="lazy"
                   className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"

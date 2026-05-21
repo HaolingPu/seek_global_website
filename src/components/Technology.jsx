@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Atom, ShieldCheck, Cpu, Beaker } from 'lucide-react'
 import { useLang } from '../i18n/LangContext'
+import { assetUrl } from '../utils/assetUrl'
 
 export default function Technology({ hideHeader = false }) {
   const { t } = useLang()
@@ -72,7 +73,7 @@ export default function Technology({ hideHeader = false }) {
               className="overflow-hidden rounded-3xl border border-ink-300/40 bg-white p-5 shadow-card"
             >
               <div className="aspect-[16/10] w-full overflow-hidden rounded-2xl bg-brand-50">
-                <img src={s.image} alt={s.title} loading="lazy" className="h-full w-full object-contain" />
+                <img src={assetUrl(s.image)} alt={s.title} loading="lazy" className="h-full w-full object-contain" />
               </div>
               <h4 className="mt-5 text-lg font-semibold text-ink-900">{s.title}</h4>
               <p className="mt-1.5 text-sm text-ink-500 leading-relaxed">{s.desc}</p>

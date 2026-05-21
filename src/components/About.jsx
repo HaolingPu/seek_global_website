@@ -3,6 +3,7 @@ import { Award, Leaf, Target, ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { company, aboutHighlights, valueChain } from '../data/content'
 import { useLang } from '../i18n/LangContext'
+import { assetUrl } from '../utils/assetUrl'
 
 const icons = [Target, Leaf, Award]
 
@@ -52,7 +53,7 @@ export default function About({ hideHeader = false }) {
             <div className="relative">
               <div className="aspect-[16/10] w-full rounded-3xl border border-ink-300/30 shadow-card overflow-hidden">
                 <img
-                  src="/images/about-minhang-hq.jpg"
+                  src={assetUrl('/images/about-minhang-hq.jpg')}
                   alt="SEEK Biotechnology Minhang headquarters"
                   loading="lazy"
                   className="h-full w-full object-cover"
