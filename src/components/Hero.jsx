@@ -10,8 +10,8 @@ export default function Hero() {
       <div className="absolute -top-32 -right-32 h-96 w-96 rounded-full bg-brand-200/40 blur-3xl" />
       <div className="absolute -bottom-32 -left-32 h-96 w-96 rounded-full bg-accent-500/10 blur-3xl" />
 
-      <div className="container-x relative pt-16 pb-20 lg:pt-24 lg:pb-28">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:items-center">
+      <div className="container-x relative pt-8 pb-14 lg:pt-10 lg:pb-20">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -19,17 +19,17 @@ export default function Hero() {
             className="lg:col-span-7"
           >
             <span className="eyebrow">{t('hero_eyebrow')}</span>
-            <h1 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-ink-900 leading-[1.05] text-balance">
+            <h1 className="mt-3 text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-ink-900 leading-[1.05] text-balance">
               {t('hero_title_a')}{' '}
               <span className="bg-gradient-to-r from-brand-600 to-accent-500 bg-clip-text text-transparent">
                 {t('hero_title_b')}
               </span>
             </h1>
-            <p className="mt-5 text-lg text-ink-500 leading-relaxed max-w-xl text-balance">
+            <p className="mt-4 text-base md:text-lg text-ink-500 leading-relaxed max-w-xl text-balance">
               {t('hero_subtitle')}
             </p>
 
-            <div className="mt-8 flex flex-wrap items-center gap-3">
+            <div className="mt-6 flex flex-wrap items-center gap-3">
               <a href="#solutions" className="btn-primary">
                 {t('hero_cta_primary')}
                 <ArrowRight className="h-4 w-4" />
@@ -39,7 +39,7 @@ export default function Hero() {
               </a>
             </div>
 
-            <div className="mt-10 flex flex-wrap gap-x-6 gap-y-3 text-sm text-ink-500">
+            <div className="mt-7 flex flex-wrap gap-x-6 gap-y-3 text-sm text-ink-500">
               <span className="inline-flex items-center gap-2">
                 <Recycle className="h-4 w-4 text-brand-600" />
                 {t('hero_tag_1')}
